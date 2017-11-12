@@ -32,10 +32,9 @@ $(function() {
          * and that the URL is not empty.
          */
         it('URL defined', function() {
-           for (var i = 0; i < allFeeds.length; i++) {
-               expect(allFeeds[i].url).toBeDefined();
-               expect(allFeeds[i].url.length).not.toBe(0);
-           }
+            allFeeds.forEach(function(feed) {
+                expect(feed.url).toBeTruthy();
+            });
         });
 
 
@@ -86,12 +85,10 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
         beforeEach(function(done) {
-            loadFeed(0, function() {
-                done();
-            });
+            loadFeed(0, done);
         });
         it('at least 1 entry in feed container', function() {
-            expect($('.entry').length).toBeGreaterThan(0);
+            expect($('.feed .entry').length).toBeGreaterThan(0);
         });
     });
         
